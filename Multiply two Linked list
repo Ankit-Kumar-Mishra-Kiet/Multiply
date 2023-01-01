@@ -1,0 +1,38 @@
+	Node* prev;
+	Node* curr = head;
+	Node* temp = (struct Node*)malloc(sizeof(struct Node));
+	temp->data = x;
+	temp->prev = NULL;
+	temp->next = NULL;
+	while(curr && curr->data <= x)
+	{
+	    prev = curr;
+	    curr = curr->next;
+	}
+	if(curr == head)
+	{
+	    //x is smallest
+	    temp->next = head;
+	    head->prev = temp;
+	    head = temp;
+	    
+	}
+	else if(curr == NULL)
+	{
+	    //x is greatest
+	    prev->next = temp;
+	    temp->prev = prev;
+	    temp->next = NULL;
+	}
+	else
+	{
+	    //x is intermediate
+	    prev->next = temp;
+	    temp->prev = prev;
+	    temp->next = curr;
+	    curr->prev = temp;
+	    
+	}
+	
+	return head;
+}
